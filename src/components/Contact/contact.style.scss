@@ -1,0 +1,38 @@
+.section-contact {
+  max-width: 1536px;
+  width: 100%;
+  margin: 25px auto 55px auto;
+  padding: 24px;
+}
+.contact-container-title-subTitle {
+  margin-bottom: 50px;
+  h2 {
+    color: #FF0038;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    color: #6b7280;
+  }
+}
+.contact-phone {
+  width: max-content;
+  margin: 25px auto 45px auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #f0f8ff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid rgba(97, 218, 251, 0.6);
+    box-shadow: 0 8px 20px rgba(97, 218, 251, 0.08);
+    font-size: 24px;
+  }
+  span {
+    font-size: clamp(18px, 6vw, 25px);
+  }
+}

@@ -1,0 +1,207 @@
+.slide-card {
+  width: min(500px, 78vw);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: linear-gradient(145deg, rgb(15, 15, 26) 0%, rgb(8, 8, 18) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+          rgba(97, 218, 251, 0.133) 0 0 0 1px,
+          rgba(0, 0, 0, 0.8) 0 40px 80px,
+          rgba(97, 218, 251, 0.125) 0 0 60px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+}
+.container-project-image {
+  height: clamp(160px, 30vw, 260px);
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+}
+.container-title-description-technologies {
+  padding: clamp(14px, 4vw, 24px);
+  h3 {
+    font-size: clamp(16px, 4.5vw, 22px);
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    font-family: "DM Sans", sans-serif;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: clamp(12px, 3.2vw, 13.5px);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 18px;
+    padding-right: 5px;
+    touch-action: pan-y;
+    user-select: none;
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+    &::-webkit-scrollbar-track {
+      background: linear-gradient(145deg, rgb(15, 15, 26) 0%, rgb(8, 8, 18) 100%);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+}
+.container-technologies-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow-X: auto;
+  touch-action: pan-y;
+  user-select: none;
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: linear-gradient(145deg, rgb(15, 15, 26) 0%, rgb(8, 8, 18) 100%);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+    svg {
+      font-size: 24px;
+    }
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+.FaJsSquare {
+  color: #EFD81C;
+}
+.FaReact {
+  color: #00CAEF;
+}
+.DiReact {
+  color: #E84B8A;
+}
+.FaSass {
+  color: #C76293;
+}
+.FaHtml5 {
+  color: #F06A32;
+}
+.FaCss3Alt {
+  color: #2868B2;
+}
+.FaGitAlt {
+  color: #F05539;
+}
+.FaRegClock {
+  color: #9AE6FF;
+}
+.SiFirebase {
+  color: #DE3308;
+}
+.SiSwiper {
+  color: #6332F6;
+}
+.SiRedux {
+  color: #7A50BE;
+}
+.TbApi {
+  color: #FF7847;
+}
+.SiThemoviedatabase {
+  color: #01B4E4;
+}
+.SiReactrouter {
+  color: #F44250;
+}
+.SiReactquery {
+  color: #FF4154;
+}
+.BsGithub,
+.FaUnsplash,
+.IoLogoVercel {
+  color: #FFFFFF;
+}
+.BiBook {
+  color: #8FB4FF;
+}
+.GrSun {
+  color: #FF8C42;
+}
+.container-link-github {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: clamp(12px, 4vw, 24px);
+  gap: 0.75rem;
+}
+.live-demo,
+.github-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-size: clamp(12px, 3vw, 14px);
+  svg {
+    font-size: 22px;
+  }
+}
+.live-demo {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+.github-code {
+  background: linear-gradient(to right, #22d3ee, #3b82f6);
+  color: #04121a;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+  .btn-demo:hover {
+    transform: scale(1.03);
+  }
+}
+@media (max-width: 900px) {
+  .container-title-description-technologies p {
+      height: 90px;
+      overflow: auto;
+  }
+}
+@media (max-width: 650px) {
+  .container-title-description-technologies p {
+    height: 80px;
+  }
+}

@@ -1,0 +1,197 @@
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.contact-form {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+.form {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background-color: rgba(26, 29, 32, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+.form-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 1rem;
+  background: conic-gradient(from var(--angle), transparent 20%, #61dafb 40%, #f05 60%, transparent 80%);
+  opacity: .4;
+  animation: 6s linear infinite border-spin;
+}
+.form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  p {
+    color: #ff4d4f;
+    font-size: clamp(14px, 2vw, 18px);
+    transition: opacity 0.2s ease-in-out;
+  }
+  .visible {
+    opacity: 1;
+  }
+  .notVisible {
+    opacity: 0;
+  }
+}
+.contact-input {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 .5rem;
+  border-bottom: 1px solid #61dafb99;
+  background: rgba(255, 255, 255, 0.03);
+  span {
+    position: absolute;
+    left: 25px;
+    opacity: 0;
+    color: #61dafb;
+    padding: 2px 5px;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  }
+  span:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 2px;
+    background-color: #242B30;
+  }
+  textarea {
+    resize: none;
+    height: 200px;
+    overflow-y: auto;
+  }
+  textarea::-webkit-scrollbar {
+    width: 5px;
+  }
+  textarea::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  textarea::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+  }
+  textarea::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+  textarea + span {
+    top: 0;
+  }
+  textarea, input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+  input::placeholder {
+    color: #757575;
+  }
+  textarea::placeholder,
+  input::placeholder {
+    font-size: clamp(14px, 2.2vw, 16px);
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+    -webkit-text-fill-color: #fff;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+  svg {
+    color: #61dafb;
+    font-size: clamp(19px, 2.5vw, 24px);
+  }
+}
+.contact-input.error {
+  border-color: #ff4d4f;
+}
+.contact-input.error span {
+  color: #ff4d4f;
+}
+.contact-input.active {
+  border: 1px solid #61dafb99;
+  box-shadow: 0 8px 20px rgba(97, 218, 251, .08);
+}
+.contact-input.error.active {
+  border: 1px solid #ff4d4f;
+  box-shadow: 0 8px 20px rgba(255, 77, 79, 0.15);
+}
+.submit {
+  width: 100%;
+  height: 45px;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  border-radius: 1rem;
+  border: 1px solid rgba(97, 218, 251, 0.4);
+  color: #61dafb;
+  background: rgba(97, 218, 251, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  cursor: pointer;
+  transition: transform .2s ease-in-out;
+}
+.submit:hover {
+  background-color: lab(81.1643% -28.0814 -26.9516 / .2);
+}
+.submit:active {
+  transform: scale(0.98);
+}
+.contact-input:has(textarea) {
+  align-items: start;
+  svg {
+    margin-top: 1rem;
+  }
+}
+.contact-input input.active + span {
+  opacity: 1;
+  transform: translateY(-28px);
+}
+.contact-input textarea.active + span {
+  opacity: 1;
+  transform: translateY(-12px);
+}
+input.active::placeholder,
+textarea.active::placeholder {
+  opacity: 0;
+}
+@keyframes border-spin {
+  to {
+    --angle: 360deg;
+  }
+}

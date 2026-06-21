@@ -1,0 +1,217 @@
+.home-content {
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+.home-content-title {
+  line-height: 50px;
+  font-size: 33px;
+  padding-bottom: 25px;
+  span {
+    color: #FF0038;
+  }
+}
+.home-content-subTitle {
+  max-width: 900px;
+  line-height: 25px;
+  letter-spacing: 2px;
+}
+.home-content-icon-link {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
+  gap: 20px;
+}
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: #1E1E23;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  &:active {
+    transform: scale(0.9);
+    transition-duration: 0.3s;
+  }
+}
+.socialSvg {
+  font-size: 17px;
+  color: #f0f8ff;
+}
+.containerTwo .socialSvg {
+  font-size: 20px;
+}
+.containerThree .socialSvg {
+  font-size: 24px;
+}
+.link-CV {
+  display: block;
+  width: max-content;
+  height: max-content;
+  margin-top: 10px;
+}
+.button-download-CV {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #be0636;
+  background-color: #FF003B;
+  overflow: hidden;
+}
+.button-download-CV, .button-download-CV-icon, .button-download-CV-text {
+  transition: all 0.3s;
+}
+.button-download-CV .button-download-CV-text {
+  transform: translateX(10px);
+  color: #f0f8ff;
+  font-weight: 600;
+}
+.button-download-CV .button-download-CV-icon {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 39px;
+  background-color: #be0636;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-download-CV svg {
+  font-size: 20px;
+  color: #f0f8ff;
+}
+.button-download-CV.active {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  justify-content: center;
+  overflow: unset;
+  transition: .5s linear;
+}
+.button-download-CV.active .button-download-CV-icon {
+  right: 5px;
+}
+.button-download-CV.active::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 100%;
+  height: 100%;
+  border: 3.5px solid transparent;
+  border-top: 3.5px solid #fff;
+  border-right: 3.5px solid #fff;
+  border-radius: 50%;
+  animation: animateCV 2s linear 450ms infinite;
+}
+.button-download-CV.active .button-download-CV-text {
+  display: none;
+}
+.button-download-CV.active .button-download-CV-icon {
+  transform: none;
+  background-color: transparent;
+}
+.container-photo {
+  position: relative;
+  width: clamp(280px, 44vw, 380px);
+  height: clamp(420px, 60vw, 540px);
+  border-radius: 15px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.container-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  z-index: 2;
+}
+.background-photo {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 18%;
+  left: 0;
+  z-index: 1;
+  background: #1B1E24;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes animateCV {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (hover: hover) {
+  .containerOne:hover,
+  .containerTwo:hover,
+  .containerThree:hover {
+    transition-duration: 0.3s;
+    transform: scale(1.5);
+    border-radius: 15px;
+  }
+  .containerOne:hover {
+    background-color: #0A66C2;
+  }
+  .containerTwo:hover {
+    background-color: #010309;
+  }
+  .containerThree:hover {
+    background-color: #3491EC;
+  }
+  .socialContainer:hover .socialSvg {
+    animation: slide-in-top 0.3s both;
+  }
+  .button-download-CV:not(.active):hover {
+    background: #be0636;
+  }
+  .button-download-CV:not(.active):hover .button-download-CV-text {
+    color: transparent;
+  }
+  .button-download-CV:not(.active):hover .button-download-CV-icon {
+    width: 148px;
+  }
+}
+@media (max-width: 980px) {
+  .home-content {
+    flex-wrap: wrap-reverse;
+  }
+}
+@media (max-width: 665px) {
+  .home-content {
+    padding-top: 80px;
+  }
+  .container-photo img {
+    width: 290px;
+    object-fit: contain;
+    height: max-content;
+  }
+  .background-photo {
+    top: 20%;
+  }
+}

@@ -1,0 +1,11 @@
+main {
+  width: 100%;
+  margin: 0 auto;
+  .section-about,
+  .section-projects,
+  .skills-content {
+    max-width: 1536px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

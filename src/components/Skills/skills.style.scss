@@ -1,0 +1,170 @@
+.section-skills {
+  padding: 24px;
+  background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: 20px 10px;
+}
+.skills-title {
+  color: #f0f8ff;
+  margin-bottom: 0.5rem;
+}
+.skills-subTitle {
+  max-width: 680px;
+  color: #6b7280;
+}
+.skills-content-card {
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.skills-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid #f4425040;
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color .3s, background .3s;
+  img {
+    width: clamp(75px, 10vw, 100px);
+    height: clamp(75px, 10vw, 100px);
+    object-fit: cover;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  &::before {
+    content:'';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .3s;
+    border-radius: inherit;
+  }
+  &:hover,
+  &.is-active {
+    border-color: transparent;
+    img {
+      transform: scale(1.1);
+    }
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+.skills-card.HTML::before,
+.skills-card.HTML.is-active {
+  background: linear-gradient(135deg, #ff6b3520, #e44d2615);
+}
+.skills-card.HTML:hover,
+.skills-card.HTML.is-active {
+  border-color: #e44d2640;
+}
+.skills-card.CSS::before,
+.skills-card.CSS.is-active {
+  background: linear-gradient(135deg, #2965f120, #1b4ed815);
+}
+.skills-card.CSS:hover,
+.skills-card.CSS.is-active {
+  border-color: #2965f140;
+}
+.skills-card.SASS::before,
+.skills-card.SASS.is-active {
+  background: linear-gradient(135deg, #cc669920, #a0407515);
+}
+.skills-card.SASS:hover,
+.skills-card.SASS.is-active {
+  border-color: #cc669940;
+}
+.skills-card.Git::before,
+.skills-card.Git.is-active {
+  background: linear-gradient(135deg, #f0513320, #c8351015);
+}
+.skills-card.Git:hover,
+.skills-card.Git.is-active {
+  border-color: #f0513340;
+}
+.skills-card.GitHub::before,
+.skills-card.GitHub.is-active {
+  background: linear-gradient(135deg, #88888820, #44444415);
+}
+.skills-card.GitHub:hover,
+.skills-card.GitHub.is-active {
+  border-color: #88888840;
+}
+.skills-card.JavaScript::before,
+.skills-card.JavaScript.is-active {
+  background: linear-gradient(135deg, #f0db4f25, #cdb80015);
+}
+.skills-card.JavaScript:hover,
+.skills-card.JavaScript.is-active {
+  border-color: #f0db4f50;
+}
+.skills-card.React::before,
+.skills-card.React.is-active {
+  background: linear-gradient(135deg, #61dafb20, #21b8d815);
+}
+.skills-card.React:hover,
+.skills-card.React.is-active{
+  border-color: #61dafb40;
+}
+.skills-card.Redux::before,
+.skills-card.Redux.is-active {
+  background: linear-gradient(135deg, #764abc20, #4a279815);
+}
+.skills-card.Redux:hover,
+.skills-card.Redux.is-active {
+  border-color: #764abc40;
+}
+.skills-card.API::before,
+.skills-card.API.is-active {
+  background: linear-gradient(135deg, #10b98120, #05856015);
+}
+.skills-card.API:hover,
+.skills-card.API.is-active {
+  border-color: #10b98140;
+}
+.skills-card.Firebase::before,
+.skills-card.Firebase.is-active {
+  background: linear-gradient(135deg, #ffa00020, #e6850015);
+}
+.skills-card.Firebase:hover,
+.skills-card.Firebase.is-active {
+  border-color: #ffa00040;
+}
+.skills-card.Vercel::before,
+.skills-card.Vercel.is-active {
+  background: linear-gradient(135deg, #88888820, #44444415);
+}
+.skills-card.Vercel:hover,
+.skills-card.Vercel.is-active {
+  border-color: #88888840;
+}
+.skills-card.Netlify::before,
+.skills-card.Netlify.is-active {
+  background: linear-gradient(135deg, #00ad9f20, #00807515);
+}
+.skills-card.Netlify:hover,
+.skills-card.Netlify.is-active {
+  border-color: #00ad9f40;
+}
+.skills-card.TanStack::before,
+.skills-card.TanStack.is-active {
+  background: linear-gradient(135deg, #ef444420, #c0111115);
+}
+.skills-card.TanStack:hover,
+.skills-card.TanStack.is-active {
+  border-color: #ef444440;
+}
+.skills-card.React.Router::before,
+.skills-card.React.Router.is-active {
+  background: linear-gradient(135deg, #f4425020, #c0111115);
+}
+.skills-card.React.Router:hover,
+.skills-card.React.Router.is-active {
+  border-color: #f4425040;
+}
