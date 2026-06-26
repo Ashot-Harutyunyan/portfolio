@@ -9,19 +9,18 @@ import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'
 function Projects() {
 
     const [active, setActive] = useState(0)
-    const [isAnimating, setIsAnimating] = useState(false)
+    const [animatingCard, setAnimatingCard] = useState(null)
     const { language } = useLanguage()
 
     const goTo = (updater) => {
-        if (isAnimating) return
-        setIsAnimating(true)
-        setActive(updater)
-        setTimeout(() => setIsAnimating(false), 350)
+        const next = typeof updater === 'function' ? updater(active) : updater
+        if (next === active) return
+        setActive(next)
+        setAnimatingCard(next)
     }
 
     const nextSlide = () => goTo((prev) => (prev + 1) % language.projects.length)
     const prevSlide = () => goTo((prev) => prev === 0 ? language.projects.length - 1 : prev - 1)
-
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -30,8 +29,7 @@ function Projects() {
         }
         window.addEventListener("keydown", handleKeyDown)
         return () => window.removeEventListener("keydown", handleKeyDown)
-    }, [active, isAnimating])
-
+    }, [active])
 
     return (<section id='projects' className='section-projects'>
         <div className='projects-titles'>
@@ -53,14 +51,15 @@ function Projects() {
                 if (offset > total / 2) offset -= total
                 if (offset < -total / 2) offset += total
                 return <SlideCard
-                            key={index}
-                            item={item}
-                            offset={offset}
-                            onClick={() => goTo(() => index)}
-                            onNext={nextSlide}
-                            onPrev={prevSlide}
-                            isAnimating={isAnimating}
-                />
+                        key={index}
+                        item={item}
+                        offset={offset}
+                        onClick={() => goTo(index)}
+                        onNext={nextSlide}
+                        onPrev={prevSlide}
+                        isAnimating={animatingCard === index}
+                        onAnimationComplete={() => setAnimatingCard(null)}
+                    />
             })}
         </motion.div>
 
@@ -73,7 +72,7 @@ function Projects() {
                     <button
                         key={index}
                         className={active === index ? "dot active" : "dot"}
-                        style={{background: active === index ? elem.color : 'rgba(255, 255, 255, 0.2)'}}
+                        style={{background: active === index ? elem.color : '#FFFFFF33'}}
                         onClick={() => goTo(index)}
                     />
                 ))}

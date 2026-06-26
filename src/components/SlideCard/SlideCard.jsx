@@ -18,7 +18,7 @@ const icons = {
     FaRegClock, BiBook, GrSun,
 }
 
-function SlideCard({item, offset, onClick, onNext, onPrev, isAnimating}) {
+function SlideCard({item, offset, onClick, onNext, onPrev, isAnimating, onAnimationComplete}) {
 
     const {img, alt, title, color, description, ArrayTechnologies, linkText, githubText, github, link} = item
     const isActive = offset === 0
@@ -57,9 +57,10 @@ function SlideCard({item, offset, onClick, onNext, onPrev, isAnimating}) {
                 dragElastic={0.6}
                 dragSnapToOrigin
                 onDragEnd={isActive ? handleDragEnd : undefined}
-                animate={{x: `calc(-50% + ${t.x}px)`, y: `calc(-50% + ${t.y}px)`, scale: t.scale, opacity: t.opacity}}
-                transition={{type: 'spring', stiffness: 150, damping: 15}}
-                style={{zIndex: 100 - Math.abs(offset), border: `1px solid ${color}`, cursor: isActive ? 'grab' : 'pointer', pointerEvents: isAnimating ? 'none' : 'auto'}}
+                animate={{ x: `calc(-50% + ${t.x}px)`, y: `calc(-50% + ${t.y}px)`, scale: t.scale, opacity: t.opacity }}
+                transition={{ type: 'spring', stiffness: 150, damping: 15 }}
+                onAnimationComplete={isActive ? onAnimationComplete : undefined}
+                style={{ zIndex: 100 - Math.abs(offset), border: `1px solid ${color}`, cursor: isActive ? 'grab' : 'pointer', pointerEvents: isAnimating ? 'none' : 'auto' }}
                 whileDrag={{ cursor: 'grabbing' }}
             >
             <div className='container-project-image'>
