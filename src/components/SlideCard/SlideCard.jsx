@@ -54,13 +54,11 @@ function SlideCard({item, offset, onClick, onNext, onPrev, isAnimating, onAnimat
                 onClick={isAnimating ? undefined : onClick}
                 drag={isActive && !isAnimating ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
-                // dragElastic={0.6}
                 dragElastic={0.2}
                 dragSnapToOrigin
                 onDragEnd={isActive ? handleDragEnd : undefined}
                 animate={{ x: `calc(-50% + ${t.x}px)`, y: `calc(-50% + ${t.y}px)`, scale: t.scale, opacity: t.opacity }}
-                // transition={{ type: 'spring', stiffness: 150, damping: 15 }}
-                transition={{ type: 'spring', stiffness: 60, damping: 20, mass: 1 }}
+                transition={{ type: 'tween', duration: 0.35, ease: 'easeOut' }}
                 onAnimationComplete={isActive ? onAnimationComplete : undefined}
                 style={{ zIndex: 100 - Math.abs(offset), border: `1px solid ${color}`, cursor: isActive ? 'grab' : 'pointer', pointerEvents: isAnimating ? 'none' : 'auto' }}
                 whileDrag={{ cursor: 'grabbing' }}
