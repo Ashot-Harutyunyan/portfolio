@@ -1,29 +1,14 @@
 .slide-card {
-  width: min(500px, 78vw);
-  position: absolute;
-  left: 50%;
-  top: 50%;
   background: linear-gradient(145deg, rgb(15, 15, 26) 0%, rgb(8, 8, 18) 100%);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow:
-          rgba(97, 218, 251, 0.133) 0 0 0 1px,
-          rgba(0, 0, 0, 0.8) 0 40px 80px,
-          rgba(97, 218, 251, 0.125) 0 0 60px;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  touch-action: pan-y;
-  user-select: none;
 }
 .container-project-image {
   height: clamp(160px, 30vw, 260px);
-  position: relative;
-  overflow: hidden;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none;
   }
 }
 .container-title-description-technologies {
@@ -45,7 +30,7 @@
     touch-action: pan-y;
     user-select: none;
     &::-webkit-scrollbar {
-      width: 2px;
+      width: 3px;
     }
     &::-webkit-scrollbar-track {
       background: linear-gradient(145deg, rgb(15, 15, 26) 0%, rgb(8, 8, 18) 100%);
@@ -65,9 +50,8 @@
   gap: 1rem;
   overflow-X: auto;
   touch-action: pan-y;
-  user-select: none;
   &::-webkit-scrollbar {
-    height: 2px;
+    height: 3px;
   }
   &::-webkit-scrollbar-track {
     background: linear-gradient(145deg, rgb(15, 15, 26) 0%, rgb(8, 8, 18) 100%);

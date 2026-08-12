@@ -1,35 +1,20 @@
 import './projects.style.scss'
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { fadeY, fadeX } from '../utils/animation.js'
 import { useLanguage } from '../../ctx/LanguageContext.jsx'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules'
 import SlideCard from '../SlideCard/SlideCard.jsx'
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'
 
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 function Projects() {
 
-    const [active, setActive] = useState(0)
-    const [animatingCard, setAnimatingCard] = useState(null)
     const { language } = useLanguage()
-
-    const goTo = (updater) => {
-        const next = typeof updater === 'function' ? updater(active) : updater
-        if (next === active) return
-        setActive(next)
-        setAnimatingCard(next)
-    }
-
-    const nextSlide = () => goTo((prev) => (prev + 1) % language.projects.length)
-    const prevSlide = () => goTo((prev) => prev === 0 ? language.projects.length - 1 : prev - 1)
-
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === "ArrowRight") nextSlide()
-            if (e.key === "ArrowLeft") prevSlide()
-        }
-        window.addEventListener("keydown", handleKeyDown)
-        return () => window.removeEventListener("keydown", handleKeyDown)
-    }, [active])
 
     return (<section id='projects' className='section-projects'>
         <div className='projects-titles'>
@@ -44,43 +29,40 @@ function Projects() {
             </motion.p>
         </div>
 
-        <motion.div className="slider" variants={fadeY(20, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
-            {language.projects.map((item, index) => {
-                const total = language.projects.length
-                let offset = index - active
-                if (offset > total / 2) offset -= total
-                if (offset < -total / 2) offset += total
-                return <SlideCard
-                        key={index}
-                        item={item}
-                        offset={offset}
-                        onClick={() => goTo(index)}
-                        onNext={nextSlide}
-                        onPrev={prevSlide}
-                        isAnimating={animatingCard === index}
-                        onAnimationComplete={() => setAnimatingCard(null)}
-                    />
-            })}
-        </motion.div>
+        <motion.div className="container-slider" variants={fadeY(20, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <Swiper
+                className="projects-swiper"
+                modules={[EffectCoverflow, Navigation, Pagination]}
+                effect="coverflow"
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView="auto"
+                loop={true}
+                coverflowEffect={{rotate: 0, stretch: 50, depth: 180, modifier: 2.2, slideShadows: false}}
+                speed={400}
+                navigation={{nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom'}}
+                pagination={{
+                    el: '.swiper-pagination-custom',
+                    clickable: true,
+                    renderBullet: (index, className) => {
+                        const color = language.projects[index]?.color || '#faebd7'
+                        return `<span class="${className}" style="--bullet-color:${color}"></span>`
+                    }
+                }}
+            >
+                {language.projects.map((item, index) => {
+                    return <SwiperSlide key={index} className='project-slide' style={{border: `1px solid ${item.color}`}}>
+                        <SlideCard item={item} />
+                    </SwiperSlide>
+                })}
+            </Swiper>
 
-        <div className="container-slider-buttons">
-            <button onClick={prevSlide} className="slider-btn">
-                <IoIosArrowBack size={20} />
-            </button>
-            <div className="slider-dots">
-                {language.projects.map((elem, index) => (
-                    <button
-                        key={index}
-                        className={active === index ? "dot active" : "dot"}
-                        style={{background: active === index ? elem.color : '#FFFFFF33'}}
-                        onClick={() => goTo(index)}
-                    />
-                ))}
+            <div className="slider-controls">
+                <button className="swiper-button-prev-custom"><IoIosArrowBack size={20}/></button>
+                <div className="swiper-pagination-custom"></div>
+                <button className="swiper-button-next-custom"><IoIosArrowForward size={20}/></button>
             </div>
-            <button onClick={nextSlide} className="slider-btn">
-                <IoIosArrowForward size={20} />
-            </button>
-        </div>
+        </motion.div>
     </section>)
 }
 

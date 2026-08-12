@@ -18,76 +18,34 @@ const icons = {
     FaRegClock, BiBook, GrSun,
 }
 
-function SlideCard({item, offset, onClick, onNext, onPrev, isAnimating, onAnimationComplete}) {
+function SlideCard({ item }) {
 
-    const {img, alt, title, color, description, ArrayTechnologies, linkText, githubText, github, link} = item
-    const isActive = offset === 0
+    const {img, alt, title, description, ArrayTechnologies, linkText, githubText, github, link} = item
 
-    const getTransform = () => {
-        const vw = window.innerWidth
-        const near = vw < 640 ? vw * 0.72 : 300
-        const far  = vw < 640 ? vw * 1.1  : 500
-
-        switch(offset) {
-            case 0:  return { x: 0,     y: 0,   scale: 1,    opacity: 1 }
-            case -1: return { x: -near, y: 10,  scale: 0.82, opacity: 0.5 }
-            case 1:  return { x: near,  y: 10,  scale: 0.82, opacity: 0.5 }
-            case -2: return { x: -far,  y: 10,  scale: 0.65, opacity: 0.2 }
-            case 2:  return { x: far,   y: 10,  scale: 0.65, opacity: 0.2 }
-            default: return { opacity: 0 }
-        }
-    }
-
-    const t = getTransform()
-
-    const handleDragEnd = (e, info) => {
-        const threshold = 80
-        if (info.offset.x < -threshold) {
-            onNext()
-        } else if (info.offset.x > threshold) {
-            onPrev()
-        }
-    }
-
-    return (<motion.div
-                className='slide-card'
-                onClick={isAnimating ? undefined : onClick}
-                drag={isActive && !isAnimating ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                dragSnapToOrigin
-                onDragEnd={isActive ? handleDragEnd : undefined}
-                animate={{ x: `calc(-50% + ${t.x}px)`, y: `calc(-50% + ${t.y}px)`, scale: t.scale, opacity: t.opacity }}
-                transition={{ type: 'tween', duration: 0.35, ease: 'easeOut' }}
-                onAnimationComplete={isActive ? onAnimationComplete : undefined}
-                style={{ zIndex: 100 - Math.abs(offset), border: `1px solid ${color}`, cursor: isActive ? 'grab' : 'pointer', pointerEvents: isAnimating ? 'none' : 'auto' }}
-                whileDrag={{ cursor: 'grabbing' }}
-            >
+    return (<motion.div className='slide-card'>
             <div className='container-project-image'>
                 <img src={`/${img}.jpg`} alt={alt} draggable={false} />
             </div>
 
-            <div>
-                {isActive && (
-                    <motion.div key={title} variants={fadeY(20, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
-                        <div className='container-title-description-technologies'>
-                            <h3>{title}</h3>
-                            <p>{description}</p>
-                            <div className='container-technologies-icon'>
-                                {ArrayTechnologies.map((technology, index) => {
-                                    const Icon = icons[technology]
-                                    return <span key={index}>
-                            {Icon && <Icon className={technology} />}
-                        </span>
-                                })}
-                            </div>
+            <div className='card-content'>
+                <motion.div key={title} variants={fadeY(20, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                    <div className='container-title-description-technologies'>
+                        <h3>{title}</h3>
+                        <p>{description}</p>
+                        <div className='container-technologies-icon'>
+                            {ArrayTechnologies.map((technology, index) => {
+                                const Icon = icons[technology]
+                                return <span key={index}>
+                                    {Icon && <Icon className={technology} />}
+                                </span>
+                            })}
                         </div>
-                        <div className='container-link-github'>
-                            <a href={github} target='_blank' className='live-demo'><BsGithub /> {githubText}</a>
-                            <a href={link} target='_blank' className='github-code'><LiaExternalLinkAltSolid /> {linkText}</a>
-                        </div>
-                    </motion.div>
-                )}
+                    </div>
+                    <div className='container-link-github'>
+                        <a href={github} target='_blank' className='live-demo'><BsGithub /> {githubText}</a>
+                        <a href={link} target='_blank' className='github-code'><LiaExternalLinkAltSolid /> {linkText}</a>
+                    </div>
+                </motion.div>
             </div>
     </motion.div>)
 }
