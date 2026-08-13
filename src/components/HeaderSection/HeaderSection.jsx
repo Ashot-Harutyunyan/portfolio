@@ -25,15 +25,15 @@ function HeaderSection() {
 
     return <section id='home' className='home-content'>
         <div>
-            <motion.h2 className='home-content-title' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.h2 className='home-content-title' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.home.title}<br/><span>{language.home.continuationTitle}</span>
             </motion.h2>
-            <motion.p className='home-content-subTitle' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.p className='home-content-subTitle' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.home.subTitle}
             </motion.p>
 
             <motion.div className='home-content-icon-link'
-                        variants={fadeX(-20, 0.8, 0.3)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                        variants={fadeX(-20, 0.8, 0.3)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {linksSocialMedia.map((elem, index) => {
                     const Icon = icons[elem.label]
                     return <a href={elem.href} key={elem.href} target='_blank' className={`socialContainer ${elem.className}`}>
@@ -43,7 +43,7 @@ function HeaderSection() {
             </motion.div>
 
             <motion.a href={cvPdf} className='link-CV' download target="_blank"
-                      variants={fadeX(-20, 0.8, 0.3)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                      variants={fadeX(-20, 0.8, 0.3)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 <button className={`button-download-CV ${isDownload ? 'active' : ''}`} onClick={handleDownloadClick}>
                     <span className='button-download-CV-text'>{language.home.buttonText} CV</span>
                     <span className='button-download-CV-icon'><LuDownload /></span>
@@ -51,12 +51,10 @@ function HeaderSection() {
             </motion.a>
         </div>
 
-        <motion.div className='container-photo' variants={fadeX(50, 0.7)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+        <motion.div className='container-photo' variants={fadeX(50, 0.7)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
             <img src='/myPhoto.png' alt='my photo'/>
             <div className='background-photo'></div>
         </motion.div>
-
-
 
     </section>
 }

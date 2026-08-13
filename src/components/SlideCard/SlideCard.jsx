@@ -26,9 +26,8 @@ function SlideCard({ item }) {
             <div className='container-project-image'>
                 <img src={`/${img}.jpg`} alt={alt} draggable={false} />
             </div>
-
             <div className='card-content'>
-                <motion.div key={title} variants={fadeY(20, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                <motion.div key={title} variants={fadeY(20, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                     <div className='container-title-description-technologies'>
                         <h3>{title}</h3>
                         <p>{description}</p>

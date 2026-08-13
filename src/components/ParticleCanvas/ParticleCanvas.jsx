@@ -2,11 +2,12 @@ import { useEffect, useRef } from "react"
 
 class Particle {
     constructor(x, y) {
-        this.radius = 20
+        this.radius = Math.random() * 2 + 1
         this.x = x
         this.y = y
-        this.velocityX = Math.random() * 3 - 1.5
-        this.velocityY = Math.random() * 3 - 1.5
+        this.velocityX = Math.random() * 1.2 - 0.6
+        this.velocityY = Math.random() * 1.2 - 0.6
+        this.life = 1
     }
 }
 
@@ -14,20 +15,26 @@ class ParticleSystem {
     constructor() {
         this.particles = []
         this.maxParticles = 60
-        this.connectDistance = 50
-        this.color = 0
+        this.connectDistance = 90
+        this.hue = 200
     }
 
     update(ctx) {
+        this.hue = (this.hue + 0.15) % 360
+
         for (let i = 0; i < this.particles.length; i++) {
             const p = this.particles[i]
             p.x += p.velocityX
             p.y += p.velocityY
+            p.life -= 0.003
 
-            ctx.fillStyle = `hsl(${this.color}, 100%, 10%)`
             ctx.beginPath()
-            ctx.arc(p.x, p.y, 1, 0, Math.PI * 2)
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+            ctx.fillStyle = `hsla(${this.hue}, 90%, 60%, ${p.life})`
+            ctx.shadowColor = `hsla(${this.hue}, 90%, 60%, ${p.life})`
+            ctx.shadowBlur = 8
             ctx.fill()
+            ctx.shadowBlur = 0
 
             for (let j = i + 1; j < this.particles.length; j++) {
                 const p2 = this.particles[j]
@@ -36,7 +43,9 @@ class ParticleSystem {
                 const distance = Math.hypot(dx, dy)
 
                 if (distance < this.connectDistance) {
-                    ctx.strokeStyle = `hsla(${this.color}, 100%, 10%, ${1 - distance / this.connectDistance + 0.2})`
+                    const alpha = (1 - distance / this.connectDistance) * 0.5
+                    ctx.strokeStyle = `hsla(${this.hue}, 90%, 60%, ${alpha})`
+                    ctx.lineWidth = 0.6
                     ctx.beginPath()
                     ctx.moveTo(p.x, p.y)
                     ctx.lineTo(p2.x, p2.y)
@@ -45,9 +54,9 @@ class ParticleSystem {
             }
         }
 
+        this.particles = this.particles.filter(p => p.life > 0)
         if (this.particles.length > this.maxParticles) {
             this.particles = this.particles.slice(-this.maxParticles)
-            this.color = this.color > 360 ? 0 : this.color + 0.5
         }
     }
 
@@ -60,6 +69,7 @@ export default function ParticleCanvas() {
     const canvasRef = useRef(null)
     const pSystemRef = useRef(new ParticleSystem())
     const rafRef = useRef(null)
+    const lastAddRef = useRef(0)
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -76,16 +86,17 @@ export default function ParticleCanvas() {
         }
 
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.fillStyle = "#212528"
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
             pSystem.update(ctx)
             rafRef.current = requestAnimationFrame(animate)
         }
 
         function addParticleFromPointer(e) {
-            const x = e.clientX
-            const y = e.clientY
-            if (x == null || y == null) return
-            pSystem.addParticle(x, y)
+            const now = performance.now()
+            if (now - lastAddRef.current < 30) return
+            lastAddRef.current = now
+            pSystem.addParticle(e.clientX, e.clientY)
         }
 
         function addParticleFromTouch(e) {

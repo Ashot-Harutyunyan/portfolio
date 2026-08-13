@@ -11,16 +11,14 @@ function Contact() {
 
     return (<section id="contact" className="section-contact">
         <div className='contact-container-title-subTitle'>
-            <motion.h2
-                variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.h2 variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.contactTitle}
             </motion.h2>
-            <motion.p
-                variants={fadeX(-50, 0.8, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.p variants={fadeX(-50, 0.8, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.contactSubTitle}
             </motion.p>
         </div>
-        <motion.div className='contact-phone' variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+        <motion.div className='contact-phone' variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
             <a href="tel:+374-99-02-35-36"><FiPhone /></a>
             <span>+374 99 02 35 36</span>
         </motion.div>

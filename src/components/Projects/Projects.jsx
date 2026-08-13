@@ -18,18 +18,18 @@ function Projects() {
 
     return (<section id='projects' className='section-projects'>
         <div className='projects-titles'>
-            <motion.h4 variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.h4 variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.projectSmallTitle}
             </motion.h4>
-            <motion.h2 variants={fadeX(-50, 0.8, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.h2 variants={fadeX(-50, 0.8, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.projectsTitle}
             </motion.h2>
-            <motion.p variants={fadeX(-50, 0.8, 0.55)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+            <motion.p variants={fadeX(-50, 0.8, 0.55)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.projectsSubTitle}
             </motion.p>
         </div>
 
-        <motion.div className="container-slider" variants={fadeY(20, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+        <motion.div className="container-slider" variants={fadeY(20, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
             <Swiper
                 className="projects-swiper"
                 modules={[EffectCoverflow, Navigation, Pagination]}
@@ -39,7 +39,6 @@ function Projects() {
                 slidesPerView="auto"
                 loop={true}
                 coverflowEffect={{rotate: 0, stretch: 50, depth: 180, modifier: 2.2, slideShadows: false}}
-                speed={400}
                 navigation={{nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom'}}
                 pagination={{
                     el: '.swiper-pagination-custom',

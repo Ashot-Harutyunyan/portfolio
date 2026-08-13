@@ -17,20 +17,20 @@ function About() {
     return <section id="about" className='section-about'>
         <div className="about-first-section">
             <div>
-                <motion.div variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                <motion.div variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                     <h3 className='about-title'>{language.about.title}</h3>
                     <h2 className='about-subtitle'>
                         {language.about.subTitle}
                         <span>{language.about.subtitleSecondPart}</span>
                     </h2>
                 </motion.div>
-                <motion.p className='about-text' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>{language.about.text}</motion.p>
-                <motion.p className='about-second-text' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>{language.about.secondText}</motion.p>
+                <motion.p className='about-text' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>{language.about.text}</motion.p>
+                <motion.p className='about-second-text' variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>{language.about.secondText}</motion.p>
             </div>
 
             <div className='about-container-img-list'>
-                <motion.img src="/developer.svg" alt="developer's image" className='developer-img' variants={fadeX(50, 0.7)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}/>
-                <motion.ul variants={stagger(0.12, 0.2)} initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }}>
+                <motion.img src="/developer.svg" alt="developer's image" className='developer-img' variants={fadeX(50, 0.7)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}/>
+                <motion.ul variants={stagger(0.12, 0.2)} initial="hidden" whileInView="visible" viewport={{ amount: 0.2, once: true }}>
                     {language.about.list.map((item, index) => {
                         const Icon = icons[item.iconName]
                         return <motion.li key={index} variants={fadeX(-20, 0.5)}>
@@ -42,22 +42,22 @@ function About() {
             </div>
         </div>
         <div className="timeline-wrapper">
-            <motion.h3 className="timeline-title" variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible">
+            <motion.h3 className="timeline-title" variants={fadeY(50, 0.8)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.about.timelineTitle}
             </motion.h3>
             <div className="timeline">
                 <motion.div
                     className="timeline-line" variants={timelineLineVariants} initial="hidden"
-                    whileInView="visible" viewport={{ amount: 0.3 }}
+                    whileInView="visible" viewport={{ amount: 0.3, once: true }}
                 />
                 {language.about.milestones.map((milestone, index) => {
                     const isEven = index % 2 === 0
                     return <motion.div key={index} className={`timeline-item ${isEven ? 'reverse' : ''}`}
-                               custom={index} variants={timelineItemVariants} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}
+                               custom={index} variants={timelineItemVariants} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}
                             >
-                            <motion.div className="timeline-dot" variants={scaleVariants} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}/>
+                            <motion.div className="timeline-dot" variants={scaleVariants} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}/>
                             <motion.div className={`timeline-content ${isEven ? 'right' : 'left'}`}
-                                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.3 }} transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
+                                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.3, once: true }} transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
                             >
                                 <span className="timeline-year">{milestone.year}</span>
                                 <h4 className="timeline-heading">{milestone.title}</h4>

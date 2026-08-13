@@ -73,11 +73,11 @@ function Form() {
     return <div className="contact-form">
             <div className='form-background'></div>
             <motion.form className='form' onSubmit={handleSubmit}
-                         variants={stagger(0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }}>
+                         variants={stagger(0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.2, once: true }}>
                 {fields.map(({ name, type, icon }, index) => {
                     const Icon = icons[icon]
                     return type === 'textarea' ?
-                        <motion.div className='form-container' key={index} variants={fadeY(30, 0.5)}>
+                        <motion.div className='form-container' key={index} variants={fadeY(30, 0.5)} viewport={{ amount: 0.2, once: true }}>
                             <div className={`contact-input ${focused[name] ? 'active' : ''} ${errors[name] ? 'error' : ''}`}>
                                 {Icon && <Icon />}
                                 <textarea
@@ -94,7 +94,7 @@ function Form() {
                             </div>
                             <p className={errors[name] ? 'visible' : 'notVisible'}>{language.formErrorMessage}</p>
                         </motion.div>
-                    :   <motion.div className='form-container' key={index} variants={fadeY(30, 0.5)}>
+                    :   <motion.div className='form-container' key={index} variants={fadeY(30, 0.5)} viewport={{ amount: 0.2, once: true }}>
                             <div className={`contact-input ${focused[name] ? 'active' : ''} ${errors[name] ? 'error' : ''}`}>
                                 {Icon && <Icon />}
                                 <input

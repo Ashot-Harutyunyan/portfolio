@@ -13,20 +13,14 @@ function Skills() {
     return <section id="skills" className="section-skills">
         <div className="skills-content">
             <motion.h2 className='skills-title'
-                variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.skillsTitle}
             </motion.h2>
             <motion.p className='skills-subTitle'
-                variants={fadeX(-50, 0.8, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3 }}>
+                variants={fadeX(-50, 0.8, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.skillsSubTitle}
             </motion.p>
-            <motion.div
-                className='skills-content-card'
-                variants={stagger(0.07)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ amount: 0.1 }}
-            >
+            <motion.div className='skills-content-card' variants={stagger(0.07)} initial="hidden" whileInView="visible" viewport={{ amount: 0.1, once: true }}>
                 {skills.map((item, index) => (
                     <motion.div
                         key={index}
@@ -34,7 +28,7 @@ function Skills() {
                         variants={cardVariants}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ amount: 0.3 }}
+                        viewport={{ amount: 0.3, once: true }}
                         transition={{ delay: index * 0.05 }}
                         onTouchStart={() => setActiveIndex(index)}
                         onTouchEnd={() => setActiveIndex(null)}
