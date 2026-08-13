@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react"
 
 class Particle {
     constructor(x, y) {
-        this.radius = Math.random() * 2 + 1
+        this.radius = Math.random() * 1.5 + 0.8
         this.x = x
         this.y = y
-        this.velocityX = Math.random() * 1.2 - 0.6
-        this.velocityY = Math.random() * 1.2 - 0.6
+        this.velocityX = Math.random() * 1 - 0.5
+        this.velocityY = Math.random() * 1 - 0.5
         this.life = 1
     }
 }
@@ -14,7 +14,7 @@ class Particle {
 class ParticleSystem {
     constructor() {
         this.particles = []
-        this.maxParticles = 60
+        this.maxParticles = 45
         this.connectDistance = 90
         this.hue = 200
     }
@@ -26,13 +26,13 @@ class ParticleSystem {
             const p = this.particles[i]
             p.x += p.velocityX
             p.y += p.velocityY
-            p.life -= 0.003
+            p.life -= 0.004
 
             ctx.beginPath()
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-            ctx.fillStyle = `hsla(${this.hue}, 90%, 60%, ${p.life})`
-            ctx.shadowColor = `hsla(${this.hue}, 90%, 60%, ${p.life})`
-            ctx.shadowBlur = 8
+            ctx.fillStyle = `hsla(${this.hue}, 80%, 55%, ${p.life * 0.7})`
+            ctx.shadowColor = `hsla(${this.hue}, 80%, 55%, ${p.life * 0.5})`
+            ctx.shadowBlur = 4
             ctx.fill()
             ctx.shadowBlur = 0
 
@@ -43,9 +43,9 @@ class ParticleSystem {
                 const distance = Math.hypot(dx, dy)
 
                 if (distance < this.connectDistance) {
-                    const alpha = (1 - distance / this.connectDistance) * 0.5
-                    ctx.strokeStyle = `hsla(${this.hue}, 90%, 60%, ${alpha})`
-                    ctx.lineWidth = 0.6
+                    const alpha = (1 - distance / this.connectDistance) * 0.45
+                    ctx.strokeStyle = `hsla(${this.hue}, 80%, 60%, ${alpha})`
+                    ctx.lineWidth = 0.9
                     ctx.beginPath()
                     ctx.moveTo(p.x, p.y)
                     ctx.lineTo(p2.x, p2.y)
@@ -94,7 +94,7 @@ export default function ParticleCanvas() {
 
         function addParticleFromPointer(e) {
             const now = performance.now()
-            if (now - lastAddRef.current < 30) return
+            if (now - lastAddRef.current < 40) return
             lastAddRef.current = now
             pSystem.addParticle(e.clientX, e.clientY)
         }
