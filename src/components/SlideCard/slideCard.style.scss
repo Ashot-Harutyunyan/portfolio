@@ -11,6 +11,9 @@
     object-fit: cover;
   }
 }
+.card-content {
+  height: 100%;
+}
 .container-title-description-technologies {
   padding: clamp(14px, 4vw, 24px);
   h3 {
@@ -22,6 +25,7 @@
     margin-bottom: 20px;
   }
   p {
+    height: 90px;
     font-size: clamp(12px, 3.2vw, 13.5px);
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.55);
@@ -29,6 +33,7 @@
     padding-right: 5px;
     touch-action: pan-y;
     user-select: none;
+    overflow: auto;
     &::-webkit-scrollbar {
       width: 3px;
     }
@@ -176,12 +181,6 @@
   transition: transform 0.3s ease;
   .btn-demo:hover {
     transform: scale(1.03);
-  }
-}
-@media (max-width: 900px) {
-  .container-title-description-technologies p {
-      height: 90px;
-      overflow: auto;
   }
 }
 @media (max-width: 650px) {
