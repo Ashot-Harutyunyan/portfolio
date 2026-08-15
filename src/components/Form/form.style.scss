@@ -1,7 +1,7 @@
-@property --angle {
+@property --deg {
+  inherits: true;
+  initial-value: 0turn;
   syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
 }
 .contact-form {
   position: relative;
@@ -36,9 +36,20 @@
   height: 100%;
   z-index: -1;
   border-radius: 1rem;
-  background: conic-gradient(from var(--angle), transparent 20%, #61dafb 40%, #f05 60%, transparent 80%);
   opacity: .4;
-  animation: 6s linear infinite border-spin;
+  background: conic-gradient(from var(--deg), #101000, #002000, #333 5%, #320030 10%, yellow, cyan, #101005);
+  animation: gradientrotate 5000ms linear infinite;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 20%;
+    aspect-ratio: 1;
+    background: inherit;
+    filter: blur(1em);
+    border-radius: 50%;
+    margin: auto;
+    inset: 0;
+  }
 }
 .form-container {
   width: 100%;
@@ -64,7 +75,8 @@
   align-items: center;
   gap: 1rem;
   padding: 0 .5rem;
-  border-bottom: 1px solid #61dafb99;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom-color: #61dafb99;
   background: rgba(255, 255, 255, 0.03);
   span {
     position: absolute;
@@ -143,7 +155,7 @@
   color: #ff4d4f;
 }
 .contact-input.active {
-  border: 1px solid #61dafb99;
+  border-color: #61dafb99;
   box-shadow: 0 8px 20px rgba(97, 218, 251, .08);
 }
 .contact-input.error.active {
@@ -190,8 +202,8 @@ input.active::placeholder,
 textarea.active::placeholder {
   opacity: 0;
 }
-@keyframes border-spin {
+@keyframes gradientrotate {
   to {
-    --angle: 360deg;
+    --deg: 1turn;
   }
 }

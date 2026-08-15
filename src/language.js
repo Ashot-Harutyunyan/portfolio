@@ -23,8 +23,8 @@ export const english = {
         list: [
             {iconName: 'SlLocationPin', text: 'Location: Armenia'},
             {iconName: 'MdOutlineWorkHistory', text: '1+ Year Experience'},
-            {iconName: 'FaLaptopCode', text: 'More than 9+ projects'},
-            {iconName: 'PiStack', text: 'React.js & JavaScript'}
+            {iconName: 'FaLaptopCode', text: 'A dozen projects'},
+            {iconName: 'PiStack', text: 'Modern Web Developer'}
         ],
         timelineTitle: 'Career Timeline',
         milestones: [
@@ -103,8 +103,8 @@ export const russia = {
         list: [
             { iconName: 'SlLocationPin', text: 'Местоположение Армения' },
             { iconName: 'MdOutlineWorkHistory', text: 'Опыт работы: 1+ год' },
-            { iconName: 'FaLaptopCode', text: 'Более 9+ проектов' },
-            { iconName: 'PiStack', text: 'React.js и JavaScript' }
+            { iconName: 'FaLaptopCode', text: 'Дюжина проектов' },
+            { iconName: 'PiStack', text: 'Современный веб-разработчик' }
         ],
         timelineTitle: 'Хронология Карьеры',
         milestones: [
@@ -183,8 +183,8 @@ export const armenian = {
         list: [
             { iconName: 'SlLocationPin', text: 'Գտնվելու վայրը՝ Հայաստան' },
             { iconName: 'MdOutlineWorkHistory', text: '1+ տարվա փորձ' },
-            { iconName: 'FaLaptopCode', text: 'Ավելի քան 9+ նախագիծ' },
-            { iconName: 'PiStack', text: 'React.js և JavaScript' }
+            { iconName: 'FaLaptopCode', text: 'մեկ տասնյակ նախագիծ' },
+            { iconName: 'PiStack', text: 'Ժամանակակից վեբ ծրագրավորող' }
         ],
         timelineTitle: 'Կարիերայի ժամանակագրություն',
         milestones: [

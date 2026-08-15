@@ -31,7 +31,7 @@
   }
 }
 .about-container-img-list {
-  max-width: 350px;
+  max-width: 355px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -46,6 +46,7 @@
     background-color: #1B1E24;
     padding: 10px;
     border-radius: 5px;
+    font-size: clamp(14px, 2vw, 16px);
     svg {
       color: #FF335F;
       font-size: 22px;

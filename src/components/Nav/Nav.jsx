@@ -56,7 +56,7 @@ function Nav() {
                                     className={`menu-link ${activeSection === sectionId ? 'active' : ''}`}
                                     variants={isMobile ? mobileItemVariants : navItemVariants}
                                 >
-                                    <a href={elem.href}>
+                                    <a href={elem.href} onClick={() => setIsOpen(false)}>
                                         {elem.label}
                                         <span />
                                     </a>
