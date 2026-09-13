@@ -1,5 +1,4 @@
 import './projects.style.scss'
-import { useState, useRef, useLayoutEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { fadeY, fadeX } from '../utils/animation.js'
 import { useLanguage } from '../../ctx/LanguageContext.jsx'
@@ -16,23 +15,8 @@ import 'swiper/css/pagination'
 function Projects() {
 
     const { language } = useLanguage()
-    const cardRefs = useRef([])
-    const [heights, setHeights] = useState([])
-    const [activeIndex, setActiveIndex] = useState(0)
 
-    const measureHeights = useCallback(() => {
-        const newHeights = cardRefs.current.map((node) => node?.offsetHeight || 0)
-        setHeights(newHeights)
-    }, [])
-
-    useLayoutEffect(() => {
-        measureHeights()
-        window.addEventListener('resize', measureHeights)
-        return () => window.removeEventListener('resize', measureHeights)
-    }, [measureHeights, language.projects])
-
-
-    return (<section id='projects' className='section-projects'>
+    return <section id='projects' className='section-projects'>
         <div className='projects-titles'>
             <motion.h4 variants={fadeX(-50, 0.8, 0.15)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
                 {language.projectSmallTitle}
@@ -55,8 +39,10 @@ function Projects() {
                 slidesPerView="auto"
                 loop={true}
                 loopAdditionalSlides={2}
-                coverflowEffect={{rotate: 0, stretch: 50, depth: 180, modifier: 2.2, slideShadows: false}}
-                navigation={{nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom'}}
+                speed={600}
+                watchSlidesProgress={true}
+                coverflowEffect={{ rotate: 0, stretch: 50, depth: 180, modifier: 2.2, slideShadows: false }}
+                navigation={{ nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' }}
                 pagination={{
                     el: '.swiper-pagination-custom',
                     clickable: true,
@@ -65,24 +51,16 @@ function Projects() {
                         return `<span class="${className}" style="--bullet-color:${color}"></span>`
                     }
                 }}
-                onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
-                onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             >
-                {language.projects.map((item, index) => {
-                    const isActive = index === activeIndex
-                    return <SwiperSlide 
-                                key={index} 
-                                className='project-slide' 
-                                style={{
-                                    border: `1px solid ${item.color}`,
-                                    height: isActive && heights[index] ? `${heights[index]}px` : undefined
-                                }}
-                            >
-                            <div ref={(node) => { cardRefs.current[index] = node }}>
-                                <SlideCard item={item} />
-                            </div>
+                {language.projects.map((item, index) => (
+                    <SwiperSlide
+                        key={index}
+                        className='project-slide'
+                        style={{ '--slide-color': item.color }}
+                    >
+                        <SlideCard item={item} />
                     </SwiperSlide>
-                })}
+                ))}
             </Swiper>
 
             <div className="slider-controls">
@@ -91,7 +69,7 @@ function Projects() {
                 <button className="swiper-button-next-custom"><IoIosArrowForward size={20}/></button>
             </div>
         </motion.div>
-    </section>)
+    </section>
 }
 
 export default Projects

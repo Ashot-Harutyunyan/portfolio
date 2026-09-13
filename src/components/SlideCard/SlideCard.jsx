@@ -1,6 +1,4 @@
 import './slideCard.style.scss'
-import { motion } from 'framer-motion'
-import { fadeY } from '../utils/animation.js'
 import { FaJsSquare, FaReact, FaSass, FaHtml5, FaCss3Alt, FaGitAlt, FaUnsplash, FaRegClock } from 'react-icons/fa'
 import { BsGithub } from 'react-icons/bs'
 import { TbApi } from 'react-icons/tb'
@@ -20,33 +18,32 @@ const icons = {
 
 function SlideCard({ item }) {
 
-    const {img, alt, title, description, ArrayTechnologies, linkText, githubText, github, link} = item
+    const { img, alt, title, description, ArrayTechnologies, linkText, githubText, github, link } = item
 
-    return (<motion.div className='slide-card'>
-            <div className='container-project-image'>
-                <img src={`/${img}.jpg`} alt={alt} draggable={false} />
-            </div>
+    return <div className='slide-card'>
+        <div className='container-project-image'>
+            <img src={`/${img}.jpg`} alt={alt} draggable={false} />
+        </div>
+
+        <div className='card-content-collapse'>
             <div className='card-content'>
-                <motion.div key={title} variants={fadeY(20, 0.35)} initial="hidden" whileInView="visible" viewport={{ amount: 0.3, once: true }}>
-                    <div className='container-title-description-technologies'>
-                        <h3>{title}</h3>
-                        <p>{description}</p>
-                        <div className='container-technologies-icon'>
-                            {ArrayTechnologies.map((technology, index) => {
-                                const Icon = icons[technology]
-                                return <span key={index}>
-                                    {Icon && <Icon className={technology} />}
-                                </span>
-                            })}
-                        </div>
+                <div className='container-title-description-technologies'>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <div className='container-technologies-icon'>
+                        {ArrayTechnologies.map((technology, index) => {
+                            const Icon = icons[technology]
+                            return <span key={index}>{Icon && <Icon className={technology} />}</span>
+                        })}
                     </div>
-                    <div className='container-link-github'>
-                        <a href={github} target='_blank' className='live-demo'><BsGithub /> {githubText}</a>
-                        <a href={link} target='_blank' className='github-code'><LiaExternalLinkAltSolid /> {linkText}</a>
-                    </div>
-                </motion.div>
+                </div>
+                <div className='container-link-github'>
+                    <a href={github} target='_blank' rel="noreferrer" className='live-demo'><BsGithub /> {githubText}</a>
+                    <a href={link} target='_blank' rel="noreferrer" className='github-code'><LiaExternalLinkAltSolid /> {linkText}</a>
+                </div>
             </div>
-    </motion.div>)
+        </div>
+    </div>
 }
 
 export default SlideCard
